@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#090a0f] text-zinc-100 font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  }
+}
+
+/* Minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Sleek Minimalist Glass & Card Utilities */
+.minimal-card {
+  background: rgba(18, 19, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4);
+}
+
+.minimal-card-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.minimal-card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(24, 25, 35, 0.8);
+  transform: translateY(-1px);
+}
+
+/* Smooth Interactive Elements */
+.interactive-chip {
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.interactive-chip:hover {
+  transform: translateY(-1px);
+}
+.interactive-chip:active {
+  transform: translateY(0);
+}
