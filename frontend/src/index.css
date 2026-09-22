@@ -4,14 +4,14 @@
 
 @layer base {
   body {
-    @apply bg-[#090a0f] text-zinc-100 font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
+    @apply bg-[#080b11] text-zinc-100 font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
     background-image: 
-      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 60%),
-      radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.07) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.03) 0%, transparent 40%);
   }
 }
 
-/* Minimalist scrollbar */
+/* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -27,31 +27,23 @@
   background: #3f3f46;
 }
 
-/* Sleek Minimalist Glass & Card Utilities */
-.minimal-card {
-  background: rgba(18, 19, 26, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4);
+/* Premium Card Styles */
+.card-premium {
+  background: #10141f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.minimal-card-hover {
+.card-premium-hover {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.minimal-card-hover:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(24, 25, 35, 0.8);
+.card-premium-hover:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: #131826;
   transform: translateY(-1px);
 }
 
-/* Smooth Interactive Elements */
-.interactive-chip {
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.interactive-chip:hover {
-  transform: translateY(-1px);
-}
-.interactive-chip:active {
-  transform: translateY(0);
+.card-inner {
+  background: #0b0e17;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }

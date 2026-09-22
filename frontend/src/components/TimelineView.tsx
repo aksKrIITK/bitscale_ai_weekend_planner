@@ -21,67 +21,68 @@ export const TimelineView: React.FC<TimelineViewProps> = ({ timeline }) => {
   const getCategoryIcon = (type: string) => {
     const t = type.toLowerCase();
     if (t.includes('food') || t.includes('dining') || t.includes('cafe')) {
-      return <Utensils className="w-3.5 h-3.5 text-emerald-400" />;
+      return <Utensils className="w-4 h-4 text-emerald-400" />;
     }
     if (t.includes('music')) {
-      return <Music className="w-3.5 h-3.5 text-pink-400" />;
+      return <Music className="w-4 h-4 text-pink-400" />;
     }
     if (t.includes('walk') || t.includes('nature') || t.includes('park')) {
-      return <Footprints className="w-3.5 h-3.5 text-teal-400" />;
+      return <Footprints className="w-4 h-4 text-teal-400" />;
     }
     if (t.includes('art') || t.includes('workshop')) {
-      return <Palette className="w-3.5 h-3.5 text-amber-400" />;
+      return <Palette className="w-4 h-4 text-amber-400" />;
     }
     if (t.includes('book')) {
-      return <BookOpen className="w-3.5 h-3.5 text-blue-400" />;
+      return <BookOpen className="w-4 h-4 text-blue-400" />;
     }
     if (t.includes('movie') || t.includes('cinema')) {
-      return <Film className="w-3.5 h-3.5 text-purple-400" />;
+      return <Film className="w-4 h-4 text-purple-400" />;
     }
-    return <Compass className="w-3.5 h-3.5 text-zinc-400" />;
+    return <Compass className="w-4 h-4 text-cyan-400" />;
   };
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80">
+      {/* Schedule Header */}
+      <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
         <div>
-          <h3 className="text-sm font-semibold text-zinc-100">Schedule & Timeline</h3>
-          <p className="text-xs text-zinc-400">Sequential Saturday itinerary</p>
+          <h3 className="text-base font-bold text-white tracking-tight">Your Saturday Schedule</h3>
+          <p className="text-xs text-zinc-400">Sequential itinerary with 20m transit buffers</p>
         </div>
-        <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400">
-          {timeline.length} Stops
+        <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-zinc-200">
+          {timeline.length} Stops Planned
         </span>
       </div>
 
-      {/* Timeline List */}
-      <div className="space-y-6 relative before:absolute before:left-3.5 before:top-4 before:bottom-4 before:w-px before:bg-zinc-800">
+      {/* Timeline Thread */}
+      <div className="space-y-6 relative before:absolute before:left-5 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-emerald-500 before:via-teal-400 before:to-zinc-800">
         {timeline.map((item, index) => (
-          <div key={index} className="relative pl-9 group animate-fade-in">
-            {/* Timeline Dot Icon */}
-            <div className="absolute left-1.5 top-3.5 -translate-x-1/2 w-6 h-6 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:border-zinc-500 transition-colors">
+          <div key={index} className="relative pl-12 group animate-fade-in">
+            {/* Centered Timeline Dot Icon */}
+            <div className="absolute left-5 top-5 -translate-x-1/2 w-8 h-8 rounded-xl bg-[#0c101a] border-2 border-zinc-600 flex items-center justify-center shadow-lg group-hover:border-emerald-400 transition-colors z-10">
               {getCategoryIcon(item.type)}
             </div>
 
-            {/* Event Card */}
-            <div className="minimal-card minimal-card-hover rounded-2xl p-5 space-y-3">
+            {/* High Readability Event Card */}
+            <div className="card-premium rounded-2xl p-5 sm:p-6 space-y-3.5 card-premium-hover">
+              {/* Header: Time & Price Badges */}
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center space-x-2">
-                  <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
+                  <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-zinc-800 border border-zinc-600 text-zinc-100">
                     {item.start} – {item.end}
                   </span>
-                  <span className="text-[10px] uppercase font-semibold text-zinc-400 bg-zinc-900/60 px-2 py-0.5 rounded">
+                  <span className="text-[10px] uppercase font-bold text-zinc-300 bg-zinc-800/90 px-2 py-0.5 rounded border border-zinc-700">
                     {item.type}
                   </span>
                 </div>
 
                 <div>
                   {item.cost === 0 ? (
-                    <span className="text-xs font-medium px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                      Free
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                      Free Entry
                     </span>
                   ) : (
-                    <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-md bg-zinc-900 text-zinc-200 border border-zinc-800">
+                    <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-zinc-800 text-emerald-400 border border-zinc-600">
                       ₹{item.cost.toFixed(0)}
                     </span>
                   )}
@@ -89,40 +90,42 @@ export const TimelineView: React.FC<TimelineViewProps> = ({ timeline }) => {
               </div>
 
               {/* Venue Name */}
-              <h4 className="text-base font-semibold text-zinc-100">
+              <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
                 {item.name}
               </h4>
 
               {/* Area & Crowd Tags */}
               {item.area && (
-                <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400">
-                  <span className="flex items-center space-x-1">
-                    <MapPin className="w-3 h-3 text-zinc-500" />
+                <div className="flex flex-wrap items-center gap-2.5 text-xs text-zinc-300">
+                  <span className="flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-[#0b0e17] border border-zinc-750 font-medium">
+                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
                     <span>{item.area}</span>
                   </span>
                   {item.crowd_level && (
-                    <span className="flex items-center space-x-1">
-                      <Users className="w-3 h-3 text-zinc-500" />
+                    <span className="flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-[#0b0e17] border border-zinc-750 font-medium">
+                      <Users className="w-3.5 h-3.5 text-zinc-400" />
                       <span className="capitalize">{item.crowd_level} crowd</span>
                     </span>
                   )}
                 </div>
               )}
 
-              {/* Why callout */}
-              <div className="bg-zinc-900/60 rounded-xl p-3 border border-zinc-850">
-                <p className="text-xs text-zinc-300 leading-relaxed">
-                  <span className="font-medium text-zinc-200">Why this fits: </span>
+              {/* Clear "Why Chosen" Callout Box */}
+              <div className="bg-[#0b0e17] rounded-xl p-3.5 border-l-3 border-emerald-400 border-y border-r border-zinc-800/80">
+                <p className="text-xs text-zinc-200 leading-relaxed font-normal">
+                  <span className="font-bold text-emerald-400">Why this was chosen: </span>
                   {item.why}
                 </p>
               </div>
             </div>
 
-            {/* Transit Buffer */}
+            {/* Travel Buffer Indicator */}
             {index < timeline.length - 1 && (
-              <div className="py-2.5 flex items-center space-x-2 text-xs text-zinc-500 pl-2">
-                <Car className="w-3.5 h-3.5 text-zinc-500" />
-                <span className="font-mono text-[11px]">~20 min travel buffer</span>
+              <div className="py-2.5 flex items-center space-x-2 text-xs text-zinc-400 pl-2">
+                <Car className="w-3.5 h-3.5 text-zinc-400" />
+                <span className="font-mono text-[11px] text-zinc-400 font-medium">
+                  ~20 min transit buffer between stops
+                </span>
               </div>
             )}
           </div>

@@ -3,7 +3,7 @@ import {
   MapPin,
   Wallet,
   Clock,
-  Sparkles,
+  Play,
   Plus,
   Check,
   ArrowRight
@@ -54,7 +54,7 @@ const TIME_OPTIONS = ['2 hours', '4 hours', '6 hours', '8 hours'];
 const BUDGET_PRESETS = [1000, 2000, 3500, 5000];
 
 export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading }) => {
-  const [city, setCity] = useState('Bangalore');
+  const [city, setCity] = useState('');
   const [budget, setBudget] = useState<number>(2000);
   const [availableTime, setAvailableTime] = useState('4 hours');
   const [mood, setMood] = useState('tired but wants to do something fun');
@@ -110,55 +110,56 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
   return (
     <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
       {/* 1-Click Demo Shortcut Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-md">
-        <div className="flex items-center space-x-2 text-xs text-zinc-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span>Looking to test the default evaluation scenario?</span>
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-zinc-900/90 border border-zinc-700/80 shadow-sm backdrop-blur-md">
+        <div className="flex items-center space-x-2.5 text-xs text-zinc-300">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+          <span className="font-medium">Quick Test: Fill standard evaluation demo parameters</span>
         </div>
         <button
           type="button"
           onClick={loadDemoScenario}
-          className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700/80 text-xs font-medium transition-all flex items-center space-x-1.5 cursor-pointer"
+          className="px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-600/80 text-xs font-semibold transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm"
         >
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+          <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />
           <span>Load Demo Scenario</span>
         </button>
       </div>
 
-      {/* Main Form Card */}
-      <div className="minimal-card rounded-2xl p-6 sm:p-8 space-y-7">
-        {/* City & Budget */}
+      {/* Main Form Card with Enhanced Readability & Contrast */}
+      <div className="bg-[#11131c] rounded-2xl p-6 sm:p-8 space-y-7 border border-zinc-700/70 shadow-xl">
+        {/* City & Budget Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* City */}
+          {/* City Input */}
           <div className="space-y-2">
-            <label className="text-xs font-medium text-zinc-300 flex items-center space-x-1.5">
-              <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-              <span>City</span>
+            <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center space-x-1.5">
+              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+              <span>City / Location</span>
             </label>
             <input
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="e.g. Bangalore"
+              placeholder="e.g. Bangalore, Mumbai, Delhi, Tokyo..."
               required
-              className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-all font-medium"
+              className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all font-semibold"
             />
+            <p className="text-[11px] text-zinc-400">Works for any city worldwide.</p>
           </div>
 
-          {/* Budget */}
+          {/* Budget Input */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-medium text-zinc-300 flex items-center space-x-1.5">
-                <Wallet className="w-3.5 h-3.5 text-zinc-400" />
-                <span>Budget (INR)</span>
+              <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center space-x-1.5">
+                <Wallet className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Budget Limit (INR)</span>
               </label>
-              <span className="text-xs font-mono text-zinc-400">
-                ₹{budget.toLocaleString()}
+              <span className="text-xs font-mono font-bold text-emerald-400">
+                ₹{budget.toLocaleString()} Max
               </span>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <div className="relative">
-                <span className="absolute left-3.5 top-2.5 text-zinc-500 text-sm">₹</span>
+                <span className="absolute left-4 top-3 text-zinc-400 font-bold text-sm">₹</span>
                 <input
                   type="number"
                   value={budget}
@@ -166,21 +167,21 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
                   placeholder="2000"
                   min="100"
                   required
-                  className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-8 pr-4 py-2.5 text-sm text-zinc-100 font-mono placeholder-zinc-500 focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-all"
+                  className="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-8 pr-4 py-3 text-sm text-zinc-100 font-mono font-bold placeholder-zinc-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all"
                 />
               </div>
 
               {/* Quick Budget Chips */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {BUDGET_PRESETS.map((val) => (
                   <button
                     key={val}
                     type="button"
                     onClick={() => setBudget(val)}
-                    className={`interactive-chip text-xs px-2.5 py-1 rounded-lg font-mono transition-all cursor-pointer ${
+                    className={`text-xs px-3 py-1.5 rounded-lg font-mono transition-all cursor-pointer border ${
                       budget === val
-                        ? 'bg-zinc-200 text-zinc-950 font-semibold'
-                        : 'bg-zinc-900 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
+                        ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100 shadow-sm'
+                        : 'bg-zinc-900 text-zinc-300 hover:text-white border-zinc-700/80 hover:border-zinc-600'
                     }`}
                   >
                     ₹{val.toLocaleString()}
@@ -191,13 +192,13 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
           </div>
         </div>
 
-        {/* Available Time */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-medium text-zinc-300 flex items-center space-x-1.5">
-            <Clock className="w-3.5 h-3.5 text-zinc-400" />
-            <span>Available Time</span>
+        {/* Available Time Section */}
+        <div className="space-y-2.5 pt-2 border-t border-zinc-800">
+          <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center space-x-1.5">
+            <Clock className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Available Time Window</span>
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             {TIME_OPTIONS.map((timeOption) => {
               const isSelected = availableTime === timeOption;
               return (
@@ -205,10 +206,10 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
                   key={timeOption}
                   type="button"
                   onClick={() => setAvailableTime(timeOption)}
-                  className={`interactive-chip px-3.5 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                  className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer border text-center ${
                     isSelected
-                      ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
-                      : 'bg-zinc-900/80 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
+                      ? 'bg-zinc-100 text-zinc-950 border-zinc-100 shadow-md font-bold'
+                      : 'bg-zinc-900 text-zinc-300 hover:text-white border-zinc-700/80 hover:border-zinc-600'
                   }`}
                 >
                   {timeOption}
@@ -218,9 +219,9 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
           </div>
         </div>
 
-        {/* Mood */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-medium text-zinc-300">
+        {/* Mood & Vibe Section */}
+        <div className="space-y-2.5 pt-2 border-t border-zinc-800">
+          <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
             <span>Mood / Vibe</span>
           </label>
           <input
@@ -228,31 +229,34 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
             value={mood}
             onChange={(e) => setMood(e.target.value)}
             placeholder="e.g. tired but wants to do something fun"
-            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-all font-medium mb-2"
+            className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all font-medium mb-2.5"
           />
 
-          <div className="flex flex-wrap gap-1.5">
-            {MOOD_PRESETS.map((preset) => (
-              <button
-                key={preset}
-                type="button"
-                onClick={() => setMood(preset)}
-                className={`interactive-chip text-xs px-3 py-1 rounded-lg transition-all cursor-pointer ${
-                  mood === preset
-                    ? 'bg-zinc-200 text-zinc-950 font-medium'
-                    : 'bg-zinc-900 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
-                }`}
-              >
-                {preset}
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-2">
+            {MOOD_PRESETS.map((preset) => {
+              const isSelected = mood === preset;
+              return (
+                <button
+                  key={preset}
+                  type="button"
+                  onClick={() => setMood(preset)}
+                  className={`text-xs px-3 py-1.5 rounded-xl transition-all cursor-pointer border ${
+                    isSelected
+                      ? 'bg-zinc-200 text-zinc-950 font-bold border-zinc-200 shadow-sm'
+                      : 'bg-zinc-900 text-zinc-300 hover:text-white border-zinc-700/80 hover:border-zinc-600'
+                  }`}
+                >
+                  {preset}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Interests */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-medium text-zinc-300">
-            <span>Interests</span>
+        {/* Interests Section */}
+        <div className="space-y-2.5 pt-2 border-t border-zinc-800">
+          <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
+            <span>Interests (Multi-select)</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {INTERESTS_LIST.map((interest) => {
@@ -262,13 +266,13 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
                   key={interest}
                   type="button"
                   onClick={() => toggleInterest(interest)}
-                  className={`interactive-chip flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer border ${
+                  className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
                     isSelected
-                      ? 'bg-zinc-100 text-zinc-950 border-zinc-200 font-semibold'
-                      : 'bg-zinc-900/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
+                      ? 'bg-emerald-500 text-zinc-950 border-emerald-400 shadow-md font-bold'
+                      : 'bg-zinc-900 text-zinc-300 border-zinc-700/80 hover:text-white hover:border-zinc-600'
                   }`}
                 >
-                  {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   <span>{interest}</span>
                 </button>
               );
@@ -276,10 +280,10 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
           </div>
         </div>
 
-        {/* Constraints */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-medium text-zinc-300">
-            <span>Constraints & Preferences</span>
+        {/* Constraints & Rules Section */}
+        <div className="space-y-2.5 pt-2 border-t border-zinc-800">
+          <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
+            <span>Constraints & Dietary Rules</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {CONSTRAINTS_LIST.map((constraint) => {
@@ -289,13 +293,13 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
                   key={constraint}
                   type="button"
                   onClick={() => toggleConstraint(constraint)}
-                  className={`interactive-chip flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer border ${
+                  className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
                     isSelected
-                      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-semibold'
-                      : 'bg-zinc-900/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
+                      ? 'bg-indigo-500/25 text-indigo-200 border-indigo-400 font-bold shadow-sm'
+                      : 'bg-zinc-900 text-zinc-300 border-zinc-700/80 hover:text-white hover:border-zinc-600'
                   }`}
                 >
-                  {isSelected && <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 text-indigo-300 stroke-[3]" />}
                   <span>{constraint}</span>
                 </button>
               );
@@ -303,7 +307,7 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
           </div>
 
           {/* Custom constraint input */}
-          <div className="flex items-center space-x-2 pt-1">
+          <div className="flex items-center space-x-2 pt-1.5">
             <input
               type="text"
               value={customConstraint}
@@ -314,13 +318,13 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
                   addCustomConstraint();
                 }
               }}
-              placeholder="Add custom constraint..."
-              className="flex-1 bg-zinc-900/80 border border-zinc-800 rounded-xl px-3.5 py-2 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-zinc-500"
+              placeholder="Add custom constraint (e.g. pet friendly, near metro)..."
+              className="flex-1 bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-indigo-400 font-medium"
             />
             <button
               type="button"
               onClick={addCustomConstraint}
-              className="px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-all flex items-center space-x-1 cursor-pointer"
+              className="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-100 text-xs font-bold transition-all flex items-center space-x-1 cursor-pointer border border-zinc-700"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add</span>
@@ -329,21 +333,21 @@ export const PlannerForm: React.FC<PlannerFormProps> = ({ onSubmit, isLoading })
         </div>
 
         {/* Submit Button */}
-        <div className="pt-3 border-t border-zinc-800/80">
+        <div className="pt-4 border-t border-zinc-800">
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 rounded-xl bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
+            className="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-zinc-950 font-extrabold text-sm transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
           >
             {isLoading ? (
               <>
                 <div className="w-4 h-4 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin"></div>
-                <span>Building Itinerary...</span>
+                <span>LangGraph Agent Building Itinerary...</span>
               </>
             ) : (
               <>
                 <span>Plan My Saturday</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </>
             )}
           </button>
